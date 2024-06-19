@@ -1,4 +1,4 @@
-import News from "../models/news.js";
+import News from "../models/News.js";
 
 export const createService = (body) => News.create(body);
 
