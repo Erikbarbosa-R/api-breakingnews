@@ -4,16 +4,16 @@ import mongoose from "mongoose";
 const NewsSchema = new mongoose.Schema({
     title: {
         type: String, 
-        require: true
+        require: true,
     },
      text: {
       type: String,
-      require: true 
+      require: true, 
 
     },
     banner: {
       type: String,
-      require: true
+      require: true,
     
     },
     createdAt:{
@@ -23,15 +23,15 @@ const NewsSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId ,
         ref: "User",
-        required: true
+        required: true,
     },
     likes: {
         type: Array,
-        require: true
+        require: true,
     },
-    Comments: {
+    comments: {
         type: Array,
-        require: true
+        require: true,
     },
 });
 

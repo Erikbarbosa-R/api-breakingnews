@@ -25,7 +25,7 @@ try {
         return res.status(401).json({message: "Authorization is diferent schema"});
     }
 
-    console.log(process.env.SECRET_JWT)
+    // console.log(process.env.SECRET_JWT)
 
     jwt.verify(token, process.env.SECRET_JWT, async (error, decoded) => {
        if (error) {
