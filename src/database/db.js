@@ -1,17 +1,12 @@
 import  mongoose from 'mongoose';
+import  dotenv from "dotenv"
+dotenv.config();
 
-const connetcDatabase = () => {
-     console.log("Wait connectiong to the database")
-     console.log(process.env)
+const connectDatabase = () => {
+     console.log("Wait connectiong to the database...");
 
-     mongoose
-     .connect( process.env.MONGODB_URI , 
-       {
-         useNewUrlParser: true,  
-         useUnifiedTopology: true 
-       }
-    )
+     mongoose.connect( process.env.MONGODB_URI )
      .then(() => console.log ("MongoDB Atlas Connected"))
-     .catch((error) => console.log ('Error connecting to MongoDB Atlas: ${err}'));
-}
-export default connetcDatabase;
+     .catch((err) => console.log (`Error connecting to MongoDB Atlas: ${err}`));
+};
+export default connectDatabase;

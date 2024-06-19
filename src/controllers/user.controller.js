@@ -1,30 +1,30 @@
 
 // import UserService from "../services/user.service.js";
 import userService from "../services/user.service.js";
+import mongoose from "mongoose";
 
 const create = async (req, res) => {
    try {
     const {name, username, email, password, avatar, background} = req.body;
 
     if (!username || !name || !email || !password || !avatar || !background ) {
-        res.status(400).send({message:"Submit all fields for registration"});
+        res.status(400).json({message:"Submit all fields for registration"});
     }
 
     const user = await userService
-    .createUserService(req.body)
+    .createService(req.body)
     .catch((err) => console.log(err,message));
 
     if (!user) {
-        return res.status(400).send({
+        return res.status(400).json({
             message: "Error creating User",
         });
     }
     // if (!user) {
     //     return res.status(400).send({ message: "Submit all fields for registration"});
     // }
- 
-    res.status(201).send({
-        message: "User created",
+    res.status(201).json({
+        message: "User created successfully",
         user: {
             id: user._id,
             name,
@@ -36,7 +36,7 @@ const create = async (req, res) => {
         },
     });
 } catch (err) {
-    res.status(500).send({menssage: err.message})
+    res.status(500).json({menssage: err.message})
 }
 };
 
@@ -45,11 +45,10 @@ const findAll = async (req, res) => {
     const users =  await userService.findAllService();
 
     if(users.length === 0) {
-        return res.status(400).send({ message: "there are no registered users"})
+        return res.status(400).json({ message: "there are no registered users"})
     }
-
     res.send(users);} catch  (err) {
-        res.status(500).send({message: err.message})
+        res.status(500).json({message: err.message})
     }
 };
 
@@ -58,7 +57,7 @@ const findById = async (req, res) => {
     const user = req.user;
 
     res.send(user);} catch (err) {
-        res.status(500).send({ message: err.message });
+        res.status(500).json({ message: err.message });
     }
 };
 
@@ -67,7 +66,7 @@ const update = async (req, res) => {
     const {name, username, email, password, avatar, background} = req.body;
 
     if (!name && !username && !email && !password && !avatar && !background) {
-        res.status(400).send({message:" Submit at least one field for update"});
+        res.status(400).json({message:" Submit at least one field for update"});
     }
 
     const {id, user} = req;
@@ -84,8 +83,8 @@ const update = async (req, res) => {
         background
     );
 
-    res.send({message: "User successfully updated!"})} catch (err) {
-        res.status(500).send({ message: err.message });
+    res.sendStatus({message: "User successfully updated!"})} catch (err) {
+        res.status(500).json({ message: err.message });
     }
 
 };
