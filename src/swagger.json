@@ -179,7 +179,7 @@
         "post": {
           "summary": "Login to Breaking News",
           "description": "Route responsible for logging in a registered user",
-          "tags": ["Auth"],
+          "tags": ["auth"],
           "requestBody": {
             "content": {
               "application/json": {
