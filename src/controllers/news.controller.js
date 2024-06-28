@@ -57,7 +57,7 @@ export const findAll = async (req, res) => {
         // if (news.length === 0) {
         //     return res.status(400).send({ message: "There are no registered news" });
         // }
-        post.shift();
+        // post.shift();
 
         res.send({
             nextUrl,
