@@ -54,10 +54,11 @@ export const findAll = async (req, res) => {
         const previus = offset - limit < 0 ? null : offset - limit;
         const previusUrl = previus != null ? `${currentUrl}?limit=${limit}&offset=${previus}` : null;
     
-        if (news.length === 0) {
-            return res.status(400).send({ message: "There are no registered news" });
-        }
-    
+        // if (news.length === 0) {
+        //     return res.status(400).send({ message: "There are no registered news" });
+        // }
+        post.shift();
+
         res.send({
             nextUrl,
             previusUrl,
